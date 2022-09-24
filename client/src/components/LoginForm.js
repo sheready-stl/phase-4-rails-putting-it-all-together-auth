@@ -18,10 +18,10 @@ function LoginForm({ onLogin }) {
       body: JSON.stringify({ username, password }),
     }).then((r) => {
       setIsLoading(false);
-      if (r.ok) {
+      if (r.status !== 401) {
         r.json().then((user) => onLogin(user));
       } else {
-        r.json().then((err) => setErrors(err.errors));
+        r.json().then((err) => setErrors(err));
       }
     });
   }
@@ -54,9 +54,7 @@ function LoginForm({ onLogin }) {
         </Button>
       </FormField>
       <FormField>
-        {errors.map((err) => (
-          <Error key={err}>{err}</Error>
-        ))}
+        {errors.error ? errors.error : false}
       </FormField>
     </form>
   );

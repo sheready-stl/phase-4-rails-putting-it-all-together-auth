@@ -8,7 +8,7 @@ function NewRecipe({ user }) {
   const [title, setTitle] = useState("My Awesome Recipe");
   const [minutesToComplete, setMinutesToComplete] = useState("30");
   const [instructions, setInstructions] = useState(`Here's how you make it.
-  
+
 ## Ingredients
 
 - 1c Sugar
@@ -34,13 +34,14 @@ function NewRecipe({ user }) {
         title,
         instructions,
         minutes_to_complete: minutesToComplete,
+        user_id: user.id
       }),
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
         history.push("/");
       } else {
-        r.json().then((err) => setErrors(err.errors));
+        r.json().then((err) => setErrors(err));
       }
     });
   }
@@ -83,9 +84,7 @@ function NewRecipe({ user }) {
             </Button>
           </FormField>
           <FormField>
-            {errors.map((err) => (
-              <Error key={err}>{err}</Error>
-            ))}
+            {errors.error}
           </FormField>
         </form>
       </WrapperChild>

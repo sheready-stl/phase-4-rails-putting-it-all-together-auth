@@ -75,6 +75,7 @@ GEM
     diff-lcs (1.4.4)
     erubi (1.10.0)
     ffi (1.15.1)
+    ffi (1.15.1-x64-mingw32)
     foreman (0.87.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -97,6 +98,8 @@ GEM
     nio4r (2.5.7)
     nokogiri (1.11.7)
       mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
+    nokogiri (1.11.7-x64-mingw32)
       racc (~> 1.4)
     nokogiri (1.11.7-x86_64-darwin)
       racc (~> 1.4)
@@ -169,6 +172,8 @@ GEM
     thor (1.1.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    tzinfo-data (1.2022.3)
+      tzinfo (>= 1.0.0)
     websocket-driver (0.7.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -176,6 +181,7 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
   x86_64-darwin-19
   x86_64-linux
 
@@ -194,4 +200,4 @@ DEPENDENCIES
   tzinfo-data
 
 BUNDLED WITH
-   2.2.16
+   2.3.22

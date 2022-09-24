@@ -7,7 +7,7 @@ function SignUpForm({ onLogin }) {
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [bio, setBio] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   function handleSubmit(e) {
@@ -28,10 +28,10 @@ function SignUpForm({ onLogin }) {
       }),
     }).then((r) => {
       setIsLoading(false);
-      if (r.ok) {
+      if (r.status !== 422) {
         r.json().then((user) => onLogin(user));
       } else {
-        r.json().then((err) => setErrors(err.errors));
+        r.json().then((err) => setErrors(true));
       }
     });
   }
@@ -89,10 +89,12 @@ function SignUpForm({ onLogin }) {
       <FormField>
         <Button type="submit">{isLoading ? "Loading..." : "Sign Up"}</Button>
       </FormField>
+
       <FormField>
-        {errors.map((err) => (
-          <Error key={err}>{err}</Error>
-        ))}
+      {
+      errors ?
+      "Check username or password" : false
+      }
       </FormField>
     </form>
   );
